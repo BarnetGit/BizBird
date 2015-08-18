@@ -1,0 +1,146 @@
+/*--Text------------------------------------------------------------*/
+body {
+	font-size: 92%;
+	font-weight: bold;
+}
+
+div.name {
+	font-size: 250%;
+	color: #00bfff;
+	text-align: right;
+	font-style: oblique;
+	float: right
+}
+
+span.ver {
+	font-size:11px;
+	color: #000000;
+	text-align: right;
+}
+
+/*--constract----------------------------------------------------------*/
+body {
+	background: #D2EDDB;
+}
+
+#wrapper {
+	margin: 0 auto;
+	background: #D2EDDB;
+
+}
+	
+header {
+	width: 800px;
+	background: #D2EDDB;
+	margin: 0 auto 80px auto;
+	padding: 10px 0;
+}
+
+#contents {
+	width: 800px;
+	margin: 0 auto;
+	padding: 40px 0;
+	text-align: center;
+	border-top: 3px solid #BDBDBD;
+}
+
+#contents2 {
+	width: 800px;
+	margin: 0 auto;
+	padding: 10px 0;
+	min-height: 300px;
+	text-align: center;
+	border-top: 3px solid #BDBDBD;
+}
+
+/*--common----------------------------------------------------------*/
+
+/*FORM1*/
+
+form#form1 {
+	margin: 0 auto;
+	padding: 10px;
+	margin-bottom: 15px;
+	border: 1px solid #ccc;
+	color: #666;
+	background: #F0FFF0;
+	width: 500px;
+}
+
+form#form1 ul {
+	padding:0;
+	margin:0
+}
+
+form#form1 ul li {
+	list-style:none;
+	margin:0px;
+	padding:10px;
+	border-top: 2px solid #FFF;
+	font-size: 12px;
+}
+
+form#form1 ul li:first-child {
+	border-top:none;
+}
+
+form#form1 ul li span {
+	width: 17em;
+	margin:0px;
+	display:block;
+	float:left;
+}
+
+/*フロートをクリア*/
+form#form1 ul li:after {
+	content:".";
+	display:block;
+	height:0;
+	visibility:hidden;
+	clear:both;  
+}
+
+form#form1 ul li label .txtfiled, form#form1 select {
+	width:250px;
+	padding:3px 5px;
+	margin:0px;
+	color:#666;
+	border: solid 1px #ccc;
+    background: #fff;
+	-webkit-box-shadow: 2px 3px 5px -2px #ddd inset;
+	-moz-box-shadow: 2px 3px 5px -2px #ddd inset;
+	box-shadow: 2px 3px 5px -2px #ddd inset;
+	border-radius:6px;
+	-webkit-border-radius:6px;
+	-moz-border-radius:6px;
+}
+
+form#form1 select {
+	width:100px;
+}
+
+form#form1 ul li p label input {
+	margin-right:0.5em;
+}
+
+form#form1 ul li input[type="submit"] {
+	cursor:pointer;  
+	font-size:92%;
+	width:150px;
+	padding: 5px 0;
+	border-style:none;
+	color: #fff;
+	background:#d3d3d3;
+	text-align:center
+
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-moz-box-shadow: 2px 2px 3px 1px #666;
+	-webkit-box-shadow: 2px 2px 3px 1px #666;
+	box-shadow: 2px 2px 3px 1px #666;
+	text-shadow: 1px 1px 2px #000; 
+}
+textarea#txt1{
+	resize: none;
+}

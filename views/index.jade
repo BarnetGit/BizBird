@@ -1,0 +1,25 @@
+extends layout
+block reedscript
+	link(rel='stylesheet', href='/css/index.css')
+block content
+	div(id="contents")
+			form(id="form1", action="/menu", target="_self", method='post')
+				ul
+					li
+						//label
+						label(style="opacity: 0.5;")
+							span ＩＤ：
+							//input(type="text", name="id", class="txtfiled")
+							input(type="text", name="id", class="txtfiled", disabled)
+					li
+						//label
+						label(style="opacity: 0.5;")
+							span パスワード：
+							//input(type="text", name="password", class="txtfiled")
+							input(type="text", name="password", class="txtfiled", disabled)
+					li
+						p
+							input(type="submit", value="開始")
+	div(id="contents2")
+		section
+			textarea(id='newarea', name='newarea', cols='100', rows='12', readonly)

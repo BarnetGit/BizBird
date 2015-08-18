@@ -1,0 +1,80 @@
+extends layout
+block reedscript
+	link(rel='stylesheet', href='/css/hosyu_report.css')
+block title
+	div(class="title") 保守作業報告
+block content
+	nav
+		ul(id="menu")
+			li
+				a(href="/menu") メインメニュー
+			li
+				a(href="/maintenance/search") 保守作業履歴検索
+			li
+				//a(href="/info/share") 情報共有
+				a(href="#", style="opacity: 0.5;") 情報共有
+			li
+				//a(href="/info/search") 情報検索
+				a(href="#", style="opacity: 0.5;") 情報検索
+			li
+				//a(href="/tool") ツール
+				a(href="#", style="opacity: 0.5;") ツール
+	div(id="contents")
+		form(id="form_hosyu_report", action="/maintenance/report", method="post")
+			ul
+				li
+					label
+						span 期間：
+					input(type="date", name="Maintenance_startdate", required, class="txtfiled")
+					|～
+					input(type="date", name="Maintenance_enddate", required, class="txtfiled")
+				li
+					label
+						span 表題：
+					input(type="text", name="Maintenance_title",size="40", required, class="txtfiled")
+				li
+					label
+						span 作業者：
+					input(type="text", name="Maintenance_worker",size="40", required, class="txtfiled")
+				li
+					label
+						span 作業場所：
+					input(type="text", name="Maintenance_location",size="40", required, class="txtfiled")
+				li
+					label
+						span 作業時間：
+					input(type="text", name="Maintenance_time",size="40", required, class="txtfiled")
+				li
+					label
+						span 客先：
+					input(type="text", name="Maintenance_customer",size="40", required, class="txtfiled")
+				li
+					label
+						span 依頼元：
+					input(type="text", name="Maintenance_requester",size="40", required, class="txtfiled")
+				li
+					label
+						span 作業分類：
+					input(type="checkbox", name="Maintenance_classification", value="問合対応")
+					|問合対応
+					input(type="checkbox", name="Maintenance_classification", value="調査作業")
+					|調査作業
+					input(type="checkbox", name="Maintenance_classification", value="復旧作業")
+					|復旧作業
+					input(type="checkbox", name="Maintenance_classification", value="修正作業")
+					|修正作業
+					input(type="checkbox", name="Maintenance_classification", value="打合作業")
+					|打合作業
+					input(type="checkbox", name="Maintenance_classification", value="その他")
+					|その他
+				li
+					label
+						span 内容：
+					textarea(id="naiyo", name="Maintenance_content", cols="80", rows="6", maxlength="100", required, class="txtfiled2")
+				li
+					label
+						span 備考：
+					textarea(id="biko", name="Maintenance_remarks", cols="80", rows="6", maxlength="100", class="txtfiled2")
+				li
+					input(type="submit", value="書き込み！")
+

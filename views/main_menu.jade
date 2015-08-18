@@ -1,0 +1,21 @@
+extends layout
+block reedscript
+	link(rel='stylesheet', href='/css/main_menu.css')
+block content
+	div(id="contents")
+		ul
+			li
+				a(href="/maintenance/report", class="btn") 　　　　　　　保守作業報告　　　　　　　
+			li
+				a(href="/maintenance/search", class="btn") 　　　　　　保守作業履歴検索　　　　　　
+			li
+				//a(href="/info/share", class="btn") 　　　　　　　　情報共有　　　　　　　　
+				a(href="#", class="btn", style="opacity: 0.5;") 　　　　　　　　情報共有　　　　　　　　
+			li
+				//a(href="/info/search", class="btn") 　　　　　　　　情報検索　　　　　　　　
+				a(href="#", class="btn", style="opacity: 0.5;") 　　　　　　　　情報検索　　　　　　　　
+			li
+				//a(href="/tool", class="btn") 　　　　　　　　ツール　　　　　　　　
+				a(href="#", class="btn", style="opacity: 0.5;") 　　　　　　　　ツール　　　　　　　　
+	div(id="contents2")
+		a(href="/", class="btn_close") 　　終了　　

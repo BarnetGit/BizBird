@@ -1,0 +1,32 @@
+extends layout
+block reedscript
+	link(rel='stylesheet', href='/css/tool.css')
+block title
+	div(class="title") ツール
+block content
+	nav
+		ul(id="menu")
+			li
+				a(href="/menu") メインメニュー
+			li
+				a(href="/maintenance/report") 保守作業報告
+			li
+				a(href="/maintenance/search") 保守作業履歴検索
+			li
+				a(href="/info/share") 情報共有
+			li
+				a(href="/info/search") 情報検索
+	div(id="contents")
+		ul
+			li
+				a(href="", class="btn") 　　　　　ユーザＩＤマスタ管理　　　　　
+			li
+				a(href="", class="btn") 　　　　　 カテゴリマスタ管理 　　　　　
+			li
+				a(href="", class="btn") 　　　　　 データバックアップ 　　　　　
+			li
+				a(href="", class="btn") 　　　　　　 統計情報の表示 　　　　　　
+			li
+				a(href="", class="btn") 　　　　　　　　　　　　　　　　　　　　
+	div(id="contents2")
+		a(href="/menu", class="btn_close") 　　戻る　　

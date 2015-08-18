@@ -1,0 +1,147 @@
+/*--Text------------------------------------------------------------*/
+body {
+	font-size: 92%;
+	font-weight: bold;
+}
+
+div.title {
+	font-size: 175%;
+	color: #6495ed;
+	font-style: oblique;
+	text-align: left;
+	float: left;
+}
+
+div.name {
+	font-size: 250%;
+	color: #00bfff;
+	text-align: right;
+	font-style: oblique;
+	float: right
+}
+
+span.ver {
+	font-size:11px;
+	color: #000000;
+	text-align: right;
+}
+
+
+/*--constract----------------------------------------------------------*/
+body {
+	background: #D2EDDB;
+}
+
+#wrapper {
+	margin: 0 auto;
+	background: #D2EDDB;
+
+}
+	
+header {
+	width: 800px;
+	background: #D2EDDB;
+	margin: 0 auto 40px auto;
+	padding: 10px 0;
+	
+}
+
+#contents {
+	border-top: 3px solid #BDBDBD;
+	width: 800px;
+	margin: 40px auto 0px;
+	padding: 50px 0;
+	text-align: center;
+}
+
+#contents2 {
+	width: 800px;
+	margin: 0 200px;
+	padding: 0;
+	float: right;
+	text-align: right;
+}
+/*--menu------------------------------------------------------------*/
+#menu {
+	width:530px;
+	padding:20px 0 0 20px;
+	margin:0 auto;
+	list-style-type: none;
+}
+
+#menu li {
+	width:20%;
+	float:left;
+	padding:0;
+	margin:0;
+	text-align:center;
+}
+
+#menu li a {
+	width:auto;
+	color:#fff;
+	font-size:12px;
+	font-weight:bold;
+	padding:10px 0;
+	text-decoration:none;
+	display:block;
+	background:#008080;
+}
+
+#menu li a:hover {
+	background:#555;
+}
+
+/*--common----------------------------------------------------------*/
+a { text-decoration: none; }
+
+li {
+list-style: none;
+padding: 10px 15px; }
+
+
+
+a.btn{
+	width = 5px;
+	background-color: skyblue;
+	border-radius: 4px;
+	color: #000000;
+	line-height: 52px;
+	-webkit-transition: none;
+	transition: none;
+	box-shadow: 0 3px 0 blue;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+a.btn:hover {
+	background-color: #31c8aa;
+	box-shadow: 0 3px 0 #23a188;
+}
+
+a.btn:active {
+	top: 3px;
+	box-shadow: none;
+}
+	
+a.btn_close{
+	background-color: skyblue;
+	border-radius: 4px;
+	color: #000000;
+	line-height: 52px;
+	-webkit-transition: none;
+	transition: none;
+	box-shadow: 0 3px 0 blue;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+a.btn_close:hover {
+	background-color: #31c8aa;
+	box-shadow: 0 3px 0 #23a188;
+}
+
+a.btn_close:active {
+	top: 3px;
+	box-shadow: none;
+}
+
+

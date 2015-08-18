@@ -1,0 +1,114 @@
+extends layout
+block reedscript
+	link(rel='stylesheet', href='/css/hosyu_report.css')
+block title
+	div(class="title") 保守作業履歴表示
+block content
+	nav
+		ul(id="menu")
+			li
+				a(href="/menu") メインメニュー
+			li
+				a(href="/maintenance/report") 保守作業報告
+			li
+				a(href="/maintenance/search") 保守作業履歴検索
+			li
+				//a(href="/info/share") 情報共有
+				a(href="#", style="opacity: 0.5;") 情報共有
+			li
+				//a(href="/info/search") 情報検索
+				a(href="#", style="opacity: 0.5;") 情報検索
+	div(id="contents")
+		form(id="form_hosyu_report", action="/maintenance/history", method="post")
+			ul
+				li
+					label
+						span 期間：
+					input(type="date", name="Maintenance_startdate", required, class="txtfiled", value='#{json.Maintenance_startdate}')
+					|～
+					input(type="date", name="Maintenance_enddate", required, class="txtfiled", value='#{json.Maintenance_enddate}')
+				li
+					label
+						span 表題：
+					input(type="text", name="Maintenance_title",size="40", required, class="txtfiled", value='#{json.Maintenance_title}')
+				li
+					label
+						span 作業者：
+					input(type="text", name="Maintenance_worker",size="40", required, class="txtfiled", value='#{json.Maintenance_worker}')
+				li
+					label
+						span 作業場所：
+					input(type="text", name="Maintenance_location",size="40", required, class="txtfiled", value='#{json.Maintenance_location}')
+				li
+					label
+						span 作業時間：
+					input(type="text", name="Maintenance_time",size="40", required, class="txtfiled", value='#{json.Maintenance_time}')
+				li
+					label
+						span 客先：
+					input(type="text", name="Maintenance_customer",size="40", required, class="txtfiled", value='#{json.Maintenance_customer}')
+				li
+					label
+						span 依頼元：
+					input(type="text", name="Maintenance_requester",size="40", required, class="txtfiled", value='#{json.Maintenance_requester}')
+				li
+					label
+						span 作業分類：
+					- var i = 0;
+					if json.Maintenance_classification[i] == '問合対応'
+						input(type="checkbox", name="Maintenance_classification", value="問合対応", checked)
+						|問合対応
+						- i++
+					else
+						input(type="checkbox", name="Maintenance_classification", value="問合対応")
+						|問合対応
+					if json.Maintenance_classification[i] == '調査作業'
+						input(type="checkbox", name="Maintenance_classification", value="調査作業", checked)
+						|調査作業
+						- i++
+					else
+						input(type="checkbox", name="Maintenance_classification", value="調査作業")
+						|調査作業
+					if json.Maintenance_classification[i] == '復旧作業'
+						input(type="checkbox", name="Maintenance_classification", value="復旧作業", checked)
+						|復旧作業
+						- i++
+					else
+						input(type="checkbox", name="Maintenance_classification", value="復旧作業")
+						|復旧作業
+					if json.Maintenance_classification[i] == '修正作業'
+						input(type="checkbox", name="Maintenance_classification", value="修正作業", checked)
+						|修正作業
+						- i++
+					else
+						input(type="checkbox", name="Maintenance_classification", value="修正作業")
+						|修正作業
+					if json.Maintenance_classification[i] == '打合作業'
+						input(type="checkbox", name="Maintenance_classification", value="打合作業", checked)
+						|打合作業
+						- i++
+					else
+						input(type="checkbox", name="Maintenance_classification", value="打合作業")
+						|打合作業
+					if json.Maintenance_classification[i] == 'その他'
+						input(type="checkbox", name="Maintenance_classification", value="その他", checked)
+						|その他
+						- i++
+					else
+						input(type="checkbox", name="Maintenance_classification", value="その他")
+						|その他
+				li
+					label
+						span 内容：
+					textarea(id="naiyo", name="Maintenance_content", cols="80", rows="6", maxlength="100", required, class="txtfiled2")= json.Maintenance_content
+				li
+					label
+						span 備考：
+					textarea(id="biko", name="Maintenance_remarks", cols="80", rows="6", maxlength="100", class="txtfiled2")= json.Maintenance_remarks
+					input(type="hidden", name="Key", value="#{json.Key}")
+					input(type="hidden", name="createdate", value="#{json.createdate}")
+				li
+					input(type="button", value="削除")
+					label 　　　　
+					input(type="submit", value="書き込み！")
+

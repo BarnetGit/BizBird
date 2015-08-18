@@ -1,0 +1,88 @@
+extends layout
+block reedscript
+	link(rel='stylesheet', href='/css/info_share.css')
+	script(type="text/javascript", src="/js/jquery-1.11.3.min.js")
+	script(type="text/javascript", src="/js/searchmodule.js")
+	script.
+		$(function(){
+			$(".History").dblclick(function () {
+				if($(this).text() == $("#reply").text()){
+					$("#reply").text("")
+					document.getElementById("hiddenNo").value="";
+				}else{
+					$("#reply").text($(this).text())
+					document.getElementById("hiddenNo").value=$(this).get(0).id;
+				}
+			});
+		});
+block title
+	div(class="title") 情報共有
+block content
+	nav
+		ul(id="menu")
+			li
+				a(href="/menu") メインメニュー
+			li
+				a(href="/maintenance/report") 保守作業報告
+			li
+				a(href="/maintenance/search") 保守作業履歴検索
+			li
+				a(href="/info/search") 情報検索
+			li
+				a(href="/tool") ツール
+	div(id="contents")
+		form(id="info_share", action="/info/share", method="post")
+			ul
+				li
+					label
+						span タイトル：
+					input(type="text", name="Info_title", size="40", class="txtfiled",required)
+				li
+					label
+						span 本文：
+					textarea(id="naiyo", name="Info_content", cols="80", rows="6", maxlength="100", required, class="txtfiled2")
+				li
+					label
+						span カテゴリ：
+					select(id="Info_category_dai", name="category_dai")
+						option(value="sample1") サンプル１
+						option(value="sample2") サンプル２
+						option(value="sample3") サンプル３
+					select(id="Info_category_cyu", name="category_cyu")
+						option(value="sample1") サンプル１
+						option(value="sample2") サンプル２
+						option(value="sample3") サンプル３
+					select(id="Info_category_syo", name="category_syo")
+						option(value="sample1") サンプル１
+						option(value="sample2") サンプル２
+						option(value="sample3") サンプル３
+				li
+					label
+						span マーク：
+					input(type="checkbox", name="Info_important", value="true")
+					|重要
+					label 　　　　
+					input(type="checkbox", name="Info_attention", value="true")
+					|注目
+					input(type="submit", value="書き込み！")
+					input(type="hidden", value="", id="hiddenNo", name="parentNo")
+		ul
+			li
+				label
+					span リプライ元：
+				textarea(id="reply", name="reply", cols="80", rows="6", maxlength="100", class="txtfiled2", readonly)
+	div(id="contents2")
+		p(class="textbox", onselectstart="return false")
+			if json
+				-var i = 0;
+				each search in json
+					
+					if search.child.length == 0
+						|・
+					else
+						a(href="javaScript:treeMenu('tree#{i}')") ■
+						a(class="History", id="#{search.id}")
+							| #{search.value[0]} #{search.value[1]} #{search.value[2]}
+							
+							
+							br

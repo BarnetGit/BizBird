@@ -1,0 +1,201 @@
+/*--Text------------------------------------------------------------*/
+body {
+	font-size: 92%;
+}
+h1 {
+	font-size: 250%;
+	color: #00bfff;
+	text-align: right;
+	font-style: oblique;
+}
+
+h2 {
+	font-size: 175%;
+	color: #6495ed;
+}
+
+h1 span{
+	font-size:11px;
+	color: #000000;
+}
+
+textarea {
+  resize: none;
+}
+
+/*--Link------------------------------------------------------------*/
+a,
+a:link {
+	color: #3333CC;
+}
+
+a:hover,
+a:active {
+	color: #3333CC;
+}
+a:focus {
+	outline: none;
+}
+
+/*--sample----------------------------------------------------------*/
+body {
+	background: #D2EDDB;
+}
+
+#wrapper {
+	margin: 0 auto;
+	background: #D2EDDB;
+
+}
+	
+header {
+	width: 800px;
+	background: #D2EDDB;
+	margin: 0 auto 20px auto;
+	padding: 10px 0;
+	border-bottom: 3px solid #BDBDBD;
+}
+
+
+#contents {
+	width: 800px;
+	overflow: hidden;
+	margin: 0 auto;
+	padding: 10px 0;
+	border-bottom: 3px solid #BDBDBD;
+	text-align: center;
+}
+
+#contents2 {
+	width: 800px;
+	overflow: hidden;
+	margin: 0 auto;
+	padding: 10px 0;
+	min-height: 300px;
+	text-align: center;
+}
+
+
+/*--common----------------------------------------------------------*/
+
+/*FORM1*/
+
+/*まず、フォーム全体の囲み罫や背景などを指定*/
+form#form1 {
+	margin: 0 auto;
+	padding: 10px;
+	margin-bottom: 15px;
+	border: 1px solid #ccc;
+	color: #666;
+	background: #F0FFF0;
+	width: 500px;
+}
+
+/*リスト要素<ul>を初期化*/
+form#form1 ul {
+	padding:0;
+	margin:0;
+}
+/*<li>も初期化し、ボーダーなどを指定*/
+form#form1 ul li {
+	list-style:none;
+	margin:0px;
+	padding:10px;
+	border-top: 2px solid #FFF;
+	font-size: 12px;
+}
+/*最初の<li>にはボーダーをつけない（:first-child疑似クラスによる指定）*/
+form#form1 ul li:first-child {
+	border-top:none;}
+
+
+/* span要素をブロック化しフロートでフォーム部品と横に並べる*/
+form#form1 ul li span {
+	width: 17em;
+	margin:0px;
+	display:block;
+	float:left;
+/* floatでなく、CSS3 の「display: inline-block」を使う手もアリ 
+	display: inline-block;*/
+}
+
+/*「:after」で <li>の末尾でフロートをクリア*/
+form#form1 ul li:after {
+	content:".";
+	display:block;
+	height:0;
+	visibility:hidden;
+	clear:both;     /*←フロートをクリア*/
+}
+
+/* テキスト入力部品の見た目を統一する */
+form#form1 ul li label .txtfiled, form#form1 select {
+	width:250px;
+	padding:3px 5px;
+	margin:0px;
+	color:#666;
+	border: solid 1px #ccc;
+	/*テキストエリア内にシャドウをつける。最初にbackground初期化が必要*/
+    background: #fff;
+	-webkit-box-shadow: 2px 3px 5px -2px #ddd inset;
+	-moz-box-shadow: 2px 3px 5px -2px #ddd inset;
+	box-shadow: 2px 3px 5px -2px #ddd inset;
+	/*角丸にする*/
+	border-radius:6px;
+	-webkit-border-radius:6px;
+	-moz-border-radius:6px;
+}
+form#form1 select {
+	/*selectは250では大きすぎるので*/
+	width:100px;
+}
+
+/*チェックボックス、ラジオボタンのブロックの指定*/
+form#form1 ul li p {
+	margin:5px 0 0 40px;
+}
+/*チェックボックス、ラジオボタンの label要素を横に並べる*/
+form#form1 ul li p label {
+	margin-right: 2em;
+	display: block;
+	float: left;
+}
+/*input要素とテキストがくっつかないように右にマージンを少し*/
+form#form1 ul li p label input {
+	margin-right:0.5em;
+}
+/*チェックボックス、ラジオボタンの label要素にロールオーバー時の変化を指定する*/
+form#form1 ul li p label:hover {
+	background : #FFF;
+	color: #096;
+	font-weight:bold;
+}
+/*チェックボックスの<label>の横幅を統一する（<p>にクラス名.checkをつけて）*/
+form#form1 ul li p.check label {
+	width: 9em;
+}
+/*送信・リセットボタンの体裁を指定（[type="○○"]で属性の値でセレクト）*/
+form#form1 ul li input[type="submit"] ,
+form#form1 ul li input[type="reset"] {
+	cursor:pointer;     /*←これでカーソルを指先型に変化させる*/
+	font-size:92%;
+	width:150px;
+	padding: 5px 0;
+	border-style:none;
+	color: #fff;
+	background:#d3d3d3;
+	text-align:center
+
+/*↓以下、ボックスの角丸、シャドウ、テキストシャドウの指定*/
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-moz-box-shadow: 2px 2px 3px 1px #666;
+	-webkit-box-shadow: 2px 2px 3px 1px #666;
+	box-shadow: 2px 2px 3px 1px #666;
+	text-shadow: 1px 1px 2px #000; 
+}
+
+}
+/*content2*/
+
