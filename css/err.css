@@ -19,16 +19,10 @@ span.ver {
 }
 
 /*--constract----------------------------------------------------------*/
-/*--constract----------------------------------------------------------*/
 body {
 	background: #D2EDDB;
 }
 
-#wrapper {
-	margin: 0 auto;
-	background: #D2EDDB;
-
-}
 	
 header {
 	width: 800px;
@@ -46,4 +40,33 @@ header {
 	border-bottom: 3px solid #BDBDBD;
 }
 
+#msg {
+	background: #99ff99;
+	color: #084d08;
+	margin: 30px auto 30px;
+	width: 300px;
+	height: 100px;
+	font-size: 35px;
+	border-radius: 5px;
+	border: solid 4px #99ff99;
+	line-height: 100px;
+}
+
+#errmsg {
+	margin: 0 auto 30px;
+	text-decoration: underline;
+	font-size: 20px;
+	color: red;
+}
+
+a#back {
+	margin: 50px auto;
+	background: green;
+	color: white;
+	font-size: 18px;
+	border-radius: 60%;
+	width:40px;
+	height:40px;;
+	padding: 20px;
+}
 

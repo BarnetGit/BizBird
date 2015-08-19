@@ -124,6 +124,20 @@ app.post('/maintenance/history', function(req, res){
 	
 });
 
+app.post('/maintenance/history/delete', function(req, res){
+	var json = req.body;
+	var deleteID = json.Key
+	var Order = 2;
+	CouchCnt.DeleteDocument(deleteID, function(err, result){
+		if(err){
+			res.render('err', {title: 'エラー', err: 'データベース削除エラー'});
+			return;
+		}
+		CouchCnt.getView('Maintenance', 'SearchDate', Order, function(err,View){});
+		res.render('hosyu_search', {title: '保守作業履歴検索 -- BizBird'});
+	});
+});
+
 app.post('/maintenance/report', function(req, res){
 	var nowdate = new Date().toFormat("YYYY-MM-DD");
 	var json = req.body;
@@ -187,41 +201,42 @@ app.post('/maintenance/search', function(req, res){
 			//日付が範囲内にあれば
 			if(!(View[i].value[iSdate] > json.enddate || View[i].value[iEdate] < json.startdate)){
 				for(var ix = 0; ix < View[i].value[iClassification].length; ix++){
-				//分類に同じものがあるならば
-					if(View[i].value[iClassification][ix] === json.classification){
-							var createjson = {
-    							id: View[i].id,
-    							start_date: View[i].value[iSdate],
-    							end_date: View[i].value[iEdate],
-    							title: View[i].value[iTitle],
-    							worker: View[i].value[iWorker],
-    							classification: View[i].value[iClassification]
-    						};
-    						if(json.content == ''){
-    							delete json["content"];
-    						}
-    						var ContentStartLength = 0;
-    						var ContentEndLength = 0;
-    						
-    						for(var iix = 0; iix < 2; iix++){
-    							//
-    							if(View[i].value[iContent].indexOf(json.content, ContentEndLength) >= 0){
-    								if(View[i].value[iContent].indexOf(json.content, ContentEndLength) - 10 >= 0){
-    									ContentStartLength = View[i].value[iContent].indexOf(json.content, ContentEndLength) - 10;
-    								}else{
-    									ContentStartLength = 0 + ContentEndLength;
-    								}
-    								if(View[i].value[iContent].indexOf(json.content, ContentEndLength) + json.content.length + 10 > View[i].value[iContent].length){
-    									ContentEndLength = View[i].value[iContent].length;
-    								}else{
-    									ContentEndLength = View[i].value[iContent].indexOf(json.content, ContentEndLength) + json.content.length + 10;
-    								}
-    								if(createjson.content == undefined) createjson.content = '';
-									createjson.content += '--' + View[i].value[iContent].substring(ContentStartLength,ContentEndLength) + '--';
-								}
+					//分類に同じものがあるならば
+					if(View[i].value[iClassification][ix] === json.classification || json.classification === 'none'){
+						var createjson = {
+    						id: View[i].id,
+    						start_date: View[i].value[iSdate],
+    						end_date: View[i].value[iEdate],
+    						title: View[i].value[iTitle],
+    						worker: View[i].value[iWorker],
+    						classification: View[i].value[iClassification]
+    					};
+    					if(json.content == ''){
+    						delete json["content"];
+    					}
+    					var ContentStartLength = 0;
+    					var ContentEndLength = 0;
+    					
+    					for(var iix = 0; iix < 2; iix++){
+    						//
+    						if(View[i].value[iContent].indexOf(json.content, ContentEndLength) >= 0){
+    							if(View[i].value[iContent].indexOf(json.content, ContentEndLength) - 10 >= 0){
+    								ContentStartLength = View[i].value[iContent].indexOf(json.content, ContentEndLength) - 10;
+    							}else{
+    								ContentStartLength = 0 + ContentEndLength;
+    							}
+    							if(View[i].value[iContent].indexOf(json.content, ContentEndLength) + json.content.length + 10 > View[i].value[iContent].length){
+    								ContentEndLength = View[i].value[iContent].length;
+    							}else{
+    								ContentEndLength = View[i].value[iContent].indexOf(json.content, ContentEndLength) + json.content.length + 10;
+    							}
+    							if(createjson.content == undefined) createjson.content = '';
+								createjson.content += '--' + View[i].value[iContent].substring(ContentStartLength,ContentEndLength) + '--';
 							}
-    						jsonarray[arraynum] = createjson; 
-    						arraynum++;
+						}
+						jsonarray[arraynum] = createjson; 
+						arraynum++;
+						break;
 					}
 				}
 			}

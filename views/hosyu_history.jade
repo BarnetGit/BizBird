@@ -1,6 +1,13 @@
 extends layout
 block reedscript
 	link(rel='stylesheet', href='/css/hosyu_report.css')
+	script.
+		function deletedoc(formname){
+			var f = document.forms[formname];
+			f.method = "POST";
+			f.action = ("/maintenance/history/delete");
+			f.submit();
+		};
 block title
 	div(class="title") 保守作業履歴表示
 block content
@@ -19,7 +26,7 @@ block content
 				//a(href="/info/search") 情報検索
 				a(href="#", style="opacity: 0.5;") 情報検索
 	div(id="contents")
-		form(id="form_hosyu_report", action="/maintenance/history", method="post")
+		form(id="form_hosyu_report", action="/maintenance/history", method="post", name="form1")
 			ul
 				li
 					label
@@ -108,7 +115,7 @@ block content
 					input(type="hidden", name="Key", value="#{json.Key}")
 					input(type="hidden", name="createdate", value="#{json.createdate}")
 				li
-					input(type="button", value="削除")
+					input(type="button", value="削除", onclick="deletedoc('form1')")
 					label 　　　　
 					input(type="submit", value="書き込み！")
 
