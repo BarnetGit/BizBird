@@ -1,13 +1,7 @@
 extends layout
 block reedscript
 	link(rel='stylesheet', href='/css/hosyu_report.css')
-	script.
-		function deletedoc(formname){
-			var f = document.forms[formname];
-			f.method = "POST";
-			f.action = ("/maintenance/history/delete");
-			f.submit();
-		};
+	script(type="text/javascript", src="/js/jsmodule.js")
 block title
 	div(class="title") 保守作業履歴表示
 block content

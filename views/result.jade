@@ -1,0 +1,15 @@
+extends layout
+block reedscript
+	link(rel='stylesheet', href='/css/result.css')
+	script(type="text/javascript", src="/js/jsmodule.js")
+	script.
+		window.onload = function(){
+			setTimeout('URLTrans("#{URLtext}")', 3000);
+		};
+		function URLTrans(text){
+			location.href = text;
+		};
+block content
+	div(id="contents")
+		div(id="msg")= msg
+		p(id="back") 3秒後に元のページに戻ります

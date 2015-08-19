@@ -7,7 +7,6 @@ var CouchCnt = new couchbase();
 var app = express();
 var nowyear = new Date().toFormat("YYYY");
 
-var LoginResult = false; //Cookieでやる。
 
 app.use('/js', express.static('js'));
 app.use('/css', express.static('css'));
@@ -16,8 +15,6 @@ app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
 
 app.get('/', function(req, res){
-	LoginResult = false;	
-	
 	res.render('index', {title: 'ログイン -- BizBird'});
 });
 
@@ -93,7 +90,6 @@ app.get('/tool', function(req, res){
 */
 
 app.post('/menu', function(req, res){
-	CouchCnt.CreateID();
 	res.render('main_menu', {title: 'メインメニュー -- BizBird'});
 });
 
@@ -134,7 +130,7 @@ app.post('/maintenance/history/delete', function(req, res){
 			return;
 		}
 		CouchCnt.getView('Maintenance', 'SearchDate', Order, function(err,View){});
-		res.render('hosyu_search', {title: '保守作業履歴検索 -- BizBird'});
+		res.render('result', {title: '削除完了 -- BizBird', msg: '削除完了しました', URLtext: '/maintenance/search'});
 	});
 });
 
@@ -158,10 +154,10 @@ app.post('/maintenance/report', function(req, res){
 			res.render('err', {title: 'エラー', err: 'データベース登録エラー'});
 			return;
 		}
-		res.render('hosyu_report', {title: '保守作業報告 -- BizBird'});
+		var Order = 2;
+		CouchCnt.getView('Maintenance', 'SearchDate', Order, function(err,View){});
+		res.render('result', {title: '書き込み完了 -- BizBird', msg: '書き込み完了しました', URLtext: '/maintenance/report'});
 	});
-	var Order = 2;
-	CouchCnt.getView('Maintenance', 'SearchDate', Order, function(err,View){});
 });
 
 app.post('/maintenance/search', function(req, res){
