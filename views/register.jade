@@ -1,0 +1,31 @@
+doctype html
+html(lang="ja")
+	head
+		meta(charset='UTF-8')
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		link(rel='stylesheet', href='/css/jquery.mobile-1.4.5.min.css')
+		link(rel='stylesheet', href='/css/register.css')
+		script(src='/js/jquery.mobile-1.2.0.min.js')
+		script(src='/js/jquery-1.11.3.min')
+		title=("register user")
+	body
+		(data-role='page')
+		div(data-role='header')
+			h1 BizBird	ver.1.0.0
+		div(data-role='content')
+			h2 register new user
+			div(data-role="collapsible", data-theme="b", data-content-theme-"c", data-collapsed='false')
+				h2 fill in the blanks below...
+					form(action'/create_user', method='post', data-ajax='false', id='form_create')
+						ul
+							li
+								input(type='text', id='create_name', name='name')
+							li
+								input(type='text', id='create_id', name='id')
+							li
+								input(type='text', id='create_password', name='password')
+							li
+								input(id='create_submit', type='submit', value='submit')
+							li
+								a(href'#', data-rel='back', type='button') back
+				div(data-role='footer') BizBird	ver.1.0.0

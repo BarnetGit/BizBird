@@ -1,9 +1,14 @@
 extends layout
 block reedscript
+	link(rel='stylesheet', href='/css/datepicker.css')
 	link(rel='stylesheet', href='/css/hosyu_search.css')
 	script(type="text/javascript", src="/js/jquery-1.11.3.min.js")
+	script(type="text/javascript", src="/js/jquery-ui.min.js")
+	script(type="text/javascript", src="/js/jquery-ui-i18n.min.js")
 	script(type="text/javascript", src="/js/jquery_highlight.js")
 	script(type="text/javascript", src="/js/searchmodule.js")
+	script(type="text/javascript", src="/js/jsmodule.js")
+
 	script.
 		window.onload = function(){
 			$('.textbox').removeHighlight().highlight('#{searchtxt}');
@@ -14,27 +19,24 @@ block content
 	nav
 		ul(id="menu")
 			li
-				a(href="/menu") メインメニュー
+				a(href="/") メインメニュー
 			li
 				a(href="/maintenance/report") 保守作業報告
 			li
-				//a(href="/info/share") 情報共有
-				a(href="#", style="opacity: 0.5;") 情報共有
+				a(href="/info/share") 情報共有
 			li
-				//a(href="/info/search") 情報検索
-				a(href="#", style="opacity: 0.5;") 情報検索
+				a(href="/info/search") 情報検索
 			li
-				//a(href="/tool") ツール
-				a(href="#", style="opacity: 0.5;") ツール
+				a(href="/tool") ツール
 	div(id="contents")
 		form(id="form_hosyu_search", action="/maintenance/search", method="post")
 			ul
 				li
 					label
 						span 期間：
-					input(type="date", name="startdate", class="txtfiled")
+					input(type="text", name="startdate", class="txtfiled" , id="datepickers", readonly)
 					label 　～　
-					input(type="date", name="enddate", class="txtfiled")
+					input(type="text", name="enddate", class="txtfiled" , id="datepickere", readonly)
 					label 　　　分類：
 					select(id="bunrui", name="classification")
 						option(value="none", selected) 選択してください
@@ -46,13 +48,13 @@ block content
 						option(value="その他") その他
 				li
 					span 　
-					input(type="text", name="content", size="40", class="txtfiled")
+					input(id="searchtext", type="text", name="content", size="40", class="txtfiled",style="ime-mode: active;")
 					label 　　　　
-					input(type="submit", value="検索！")
+					input(type="submit", value="検索！", onClick="return PostSendMaintenanceSearch()")
 				li
 					label
 						span ソート順：
-					select(id="sort", name="sortorder")
+					select(id="sort", name="sortorder", onChange="SortValueMaintenanceSearch()")
 						option(value="worker") 作業者
 						option(value="date_asc") 日付：昇順
 						option(value="date_des", selected) 日付：降順
@@ -61,7 +63,7 @@ block content
 			li
 				label
 					span 検索結果：
-		p(class="textbox")
+		p(class="textbox", onselectstart="return false")
 			if json
 				each search in json
 					a(href="/maintenance/history/#{search.id}", class="History")
@@ -70,5 +72,5 @@ block content
 							| #{classification} 
 						br
 						if search.content
-							| 　　　#{search.content}
+							| #{search.content}
 							br

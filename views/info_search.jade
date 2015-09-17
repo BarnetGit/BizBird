@@ -1,13 +1,20 @@
 extends layout
 block reedscript
+	link(rel='stylesheet', href='/css/datepicker.css')
 	link(rel='stylesheet', href='/css/info_search.css')
+	script(type="text/javascript", src="/js/jquery-1.11.3.min.js")
+	script(type="text/javascript", src="/js/jquery-ui.min.js")
+	script(type="text/javascript", src="/js/jquery-ui-i18n.min.js")
+	script(type="text/javascript", src="/js/jquery_highlight.js")
+	script(type="text/javascript", src="/js/searchmodule.js")
+	script(type="text/javascript", src="/js/jsmodule.js")
 block title
 	div(class="title") 情報検索
 block content
 	nav
 		ul(id="menu")
 			li
-				a(href="/menu") メインメニュー
+				a(href="/") メインメニュー
 			li
 				a(href="/maintenance/report") 保守作業報告
 			li
@@ -17,41 +24,56 @@ block content
 			li
 				a(href="/tool") ツール
 	div( id="contents")
-		form(id="info_search", action="", method="post")
+		form(id="info_search", action="/info/search", method="post")
 			ul
 				li
 					label
 						span 日付：
-					input(type="date", name="", required, class="txtfiled")
+					input(type="text", name="start_date", required, class="txtfiled", id="datepickers", readonly)
 					label 　～　
-					input(type="date", name="", required, class="txtfiled")
+					input(type="text", name="end_date", required, class="txtfiled", id="datepickere", readonly)
 					label 　　　マーク：
-					select(id="mark", name="")
-						option(value="important") 重要
-						option(value="attention") 注目
+					input(type="checkbox", name="Info_important", value="true", class="mark1")
+					label(class="mark1") 重要
+					label 　　　　
+					input(type="checkbox", name="Info_attention", value="true", class="mark2")
+					label(class="mark2") 注目
 				li
 					label
 						span カテゴリ：
 					select(id="category", name="category")
+						option(value="0") 選択してください
 						option(value="1") ＠１大：中：小
 						option(value="2") ＠２大：中：小
 						option(value="3") ＠３大：中：小
 						option(value="4") ＠４大：中：小
-					span 　
-					input(type="text", name="", size="40", class="txtfiled")
+					select(id="category", name="category")
+						option(value="0") 選択してください
+						option(value="1") ＠１大：中：小
+						option(value="2") ＠２大：中：小
+						option(value="3") ＠３大：中：小
+						option(value="4") ＠４大：中：小
+					select(id="category", name="category")
+						option(value="0") 選択してください
+						option(value="1") ＠１大：中：小
+						option(value="2") ＠２大：中：小
+						option(value="3") ＠３大：中：小
+						option(value="4") ＠４大：中：小
+				li
+					span 
+					input(id="searchtxt", type="text", name="contents", size="70", class="txtfiled",ime-mode: active;)
 					label 　　　　
-					input(type="submit", value="検索！")
+					input(type="submit", value="検索！", onClick="return PostSendInfoSearch()")
 	div(id="contents2")
 		ul(id="kekka")
-			li
+			li(id="sort")
 				label
 					span ソート順：
-				select(id="sort", name="sort")
+				select(id="SelectSort", name="sort", onChange="SortValueInfoSearch()")
 					option(value="date_asc") 日付：昇順
 					option(value="date_des") 日付：降順
 					option(value="mark") マーク
 					option(value="category") カテゴリ
 				label 　　　　
-				input(type="button", value="検索！")
 			li
-				textarea(id="kekka2", name="naiyo", cols="110", rows="28", maxlength="500", class="txtfiled2", readonly)
+				p(class="textbox", onselectstart="return false")

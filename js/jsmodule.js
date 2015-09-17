@@ -1,5 +1,5 @@
 function deletedoc(formname){
-	var res = confirm("–{“–‚ÉÁ‚µ‚Ä‚¢‚¢‚Å‚·‚©H");
+	var res = confirm("æœ¬å½“ã«æ¶ˆã—ã¦ã„ã„ã§ã™ã‹ï¼Ÿ");
 	if(res){
 		var f = document.forms[formname];
 		f.method = "POST";
@@ -7,3 +7,8 @@ function deletedoc(formname){
 		f.submit();
 	}
 };
+$(function() {
+  $.datepicker.setDefaults($.datepicker.regional['ja']);
+  $('#datepickers').datepicker({ dateFormat: 'yy-mm-dd' });
+  $('#datepickere').datepicker({ dateFormat: 'yy-mm-dd' });
+});

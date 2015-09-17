@@ -1,7 +1,7 @@
 /*--Text------------------------------------------------------------*/
 body {
-	font-size: 92%;
 	font-weight: bold;
+	font-family: "ÇlÇr ÉSÉVÉbÉN",sans-serif;
 }
 
 div.name {
@@ -13,7 +13,7 @@ div.name {
 }
 
 span.ver {
-	font-size:11px;
+	font-size:50%;
 	color: #000000;
 	text-align: right;
 }
@@ -23,16 +23,16 @@ body {
 	background: #D2EDDB;
 }
 
-	
 header {
-	width: 800px;
+	max-width: 100%;
 	background: #D2EDDB;
 	margin: 0 auto 80px auto;
-	padding: 10px 0;
+	padding: 10px 20%;
 }
 
 #contents {
-	width: 800px;
+	max-width: 100%;
+	height: auto;
 	margin: 0 auto;
 	padding: 40px 0;
 	text-align: center;
@@ -44,17 +44,16 @@ header {
 	background: #e6e6fa;
 	color: navy;
 	margin: 30px auto 60px;
-	width: 350px;
-	height: 100px;
-	font-size: 30px;
-	border-radius: 5px;
-	line-height: 100px;
+	width: 60%;
+	height: 25%;
+	font-size: 250%;
+	line-height: 100%;
 }
 
 p#back {
 	margin: 50px auto;
 	color: navy;
-	font-size: 18px;
-	height:40px;
+	font-size: 110%;
+	border-radius: 60%;
 	padding: 20px;
 }

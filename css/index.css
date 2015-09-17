@@ -144,3 +144,35 @@ form#form1 ul li input[type="submit"] {
 textarea#txt1{
 	resize: none;
 }
+p.textbox {
+	float: right;
+	width:700px;
+	height:300px;
+	overflow:scroll;
+	border: solid 1px #ccc;
+	background: #FFFFFF;
+	white-space: nowrap;
+	text-align:left;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+.highlight{
+	color: red;
+}
+
+a.btn{
+	width = 20%;
+	height: auto;
+	background-color: skyblue;
+	border-radius: 4px;
+	color: #000000;
+	line-height: 20%;
+	-webkit-transition: none;
+	transition: none;
+	box-shadow: 0 3px 0 blue;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}

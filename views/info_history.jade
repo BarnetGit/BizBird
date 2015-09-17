@@ -2,7 +2,7 @@ extends layout
 block reedscript
 	link(rel='stylesheet', href='/css/info_share.css')
 block title
-	div(class="title") 情報共有履歴
+	div(class="title") 情報共有履歴表示
 block content
 	nav
 		ul(id="menu")
@@ -17,43 +17,78 @@ block content
 			li
 				a(href="/tool") ツール
 	div(id="contents")
-		ul
-			form(id="info_share", action="", method="post")
+		form(id="info_share", action="/info/history", method="post")
+			ul
 				li
 					label
 						span タイトル：
-					input(type="text", name="", size="40", class="txtfiled", required)
+					input(type="text", name="Info_title", size="40", class="txtfiled", value="#{json.Info_title}", ime-mode: active;, required)
 				li
 					label
 						span 本文：
-					textarea(id="naiyo", name="", cols="80", rows="6", maxlength="100", required, class="txtfiled2")
+					textarea(id="naiyo", name="Info_content", cols="80", rows="6", maxlength="100", ime-mode: active;, required, class="txtfiled2")= json.Info_content
 				li
 					label
 						span カテゴリ：
 					select(id="category_dai", name="category_dai")
-						option(value="1") サンプル１
-						option(value="2") サンプル２
-						option(value="3") サンプル３
+						if json.category_dai === "sample1"
+							option(value="sample1", selected) サンプル１
+						else
+							option(value="sample1") サンプル１
+						if json.category_dai === "sample2"
+							option(value="sample2", selected) サンプル２
+						else
+							option(value="sample2") サンプル２
+						if json.category_dai === "sample3"
+							option(value="sample3", selected) サンプル３
+						else
+							option(value="sample3") サンプル３
 					select(id="category_cyu", name="category_cyu")
-						option(value="1") サンプル１
-						option(value="2") サンプル２
-						option(value="3") サンプル３
+						if json.category_cyu === "sample1"
+							option(value="sample1", selected) サンプル１
+						else
+							option(value="sample1") サンプル１
+						if json.category_cyu === "sample2"
+							option(value="sample2", selected) サンプル２
+						else
+							option(value="sample2") サンプル２
+						if json.category_cyu === "sample3"
+							option(value="sample3", selected) サンプル３
+						else
+							option(value="sample3") サンプル３
 					select(id="category_syo", name="category_syo")
-						option(value="1") サンプル１
-						option(value="2") サンプル２
-						option(value="3") サンプル３
+						if json.category_syo === "sample1"
+							option(value="sample1", selected) サンプル１
+						else
+							option(value="sample1") サンプル１
+						if json.category_syo === "sample2"
+							option(value="sample2", selected) サンプル２
+						else
+							option(value="sample2") サンプル２
+						if json.category_syo === "sample3"
+							option(value="sample3", selected) サンプル３
+						else
+							option(value="sample3") サンプル３
 				li
 					label
 						span マーク：
-					input(type="checkbox", name="inportant", value="important")
+					if json.Info_important === "true"
+						input(type="checkbox", name="Info_important", value="important", checked)
+					else
+						input(type="checkbox", name="Info_important", value="important")
 					|重要
 					label 　　　　
-					input(type="checkbox", name="attention", value="attention")
+					if json.Info_attention === "true"
+						input(type="checkbox", name="Info_attention", value="attention", checked)
+					else
+						input(type="checkbox", name="Info_attention", value="attention")
 					|注目
-					input(type="submit", value="書き込み！")
-			li
-				label
-					span リプライ元：
-				textarea(id="reply", name="reply", cols="80", rows="6", maxlength="100", required, class="txtfiled2")
+					input(type="hidden", name="myID", value="#{json.myID}")
+					input(type="submit", value="修正！")
+			ul
+				li(class="alone")
+					label
+						span リプライ元：
+						p(id="reply")
 	div(id="contents2")
-		textarea(id="itiran", name="itiran", cols="110", rows="15", maxlength="100", class="txtfiled2", readonly)
+		p(class="textbox")

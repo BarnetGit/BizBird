@@ -2,22 +2,26 @@ var Couchbase = require('couchbase');
 var Cluster = new Couchbase.Cluster('couchbase://***.***.***.***:****');
 var Bucket = Cluster.openBucket('serviceReport');
 var BucketSec = Cluster.openBucket('security');
+var BucketLogin = Cluster.openBucket('Login');
 
-var CouchbaseCnt = function(){
-};
+var CouchbaseCnt = function(){};
 
 //カウチベースに登録
-CouchbaseCnt.prototype.save = function(json, idname, callback){
+CouchbaseCnt.prototype.save = function(json, Incrementname, IDname, callback){
 	var Incremental = 1
 	//カウチベース内でのインクリメント（++）操作
-	BucketSec.counter(idname, Incremental, function(err,couchid){
+	BucketSec.counter(Incrementname, Incremental, function(err,couchid){
 		if(err){
 			console.log('インクリメントエラー' + err);
 			callback(err,res);
 			return;
 		}
 		var Key = couchid.value;
-		Bucket.insert(Key.toString(), json, function(err,res){
+		json.myID = Key.toString();
+		console.log(Key.toString());
+		console.log(json);
+		IDname += Key;
+		Bucket.insert(IDname, json, function(err,res){
 			if(err){
 				console.log('Insert err' + err);
 			}else{
@@ -29,10 +33,12 @@ CouchbaseCnt.prototype.save = function(json, idname, callback){
 };
 
 //カウチベースのView表示
-CouchbaseCnt.prototype.getView = function(devname, viewname, Order, callback){
+CouchbaseCnt.prototype.getView = function(devname, viewname, Order, Limit, callback){
 	var ViewQuery = Couchbase.ViewQuery;
 	//order 1=昇順 2=降順
-	var query = ViewQuery.from(devname, viewname).order(Order).limit(100);
+	//stale BEFORE=1 NONE=2 AFTER=3
+	var query = ViewQuery.from(devname, viewname).order(Order).limit(Limit).stale(ViewQuery.Update.BEFORE);
+	if(Limit == 0) query = ViewQuery.from(devname, viewname).order(Order).stale(ViewQuery.Update.BEFORE);
 	var jsonarray = new Array();
 	Bucket.query(query, function (err, res, meta) {
     	if (err) {
@@ -96,5 +102,27 @@ CouchbaseCnt.prototype.ReplaceDocument = function(CouchID, json, callback){
 		callback(err,res);
 	});
 };
+
+//田辺用
+
+
+//認証を行う
+CouchbaseCnt.prototype.authenticate = function (devname, viewname, callback) {
+	var ViewQuery = Couchbase.ViewQuery;
+	var query = ViewQuery.from(devname, viewname);
+	
+	var jsonarray = new Array();
+	
+	BucketLogin.query(query, function (err, res, meta) {
+    	if (err) {
+        	console.error('View query failed:', err);
+        	callback(err,res);
+        	return;
+    	}
+    	console.log('Found', meta.total_rows);
+    	callback(err,res);
+	});
+};
+
 
 module.exports = CouchbaseCnt;

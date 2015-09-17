@@ -1,7 +1,8 @@
 /*--Text------------------------------------------------------------*/
 body {
-	font-size: 92%;
 	font-weight: bold;
+	font-family: "ＭＳ ゴシック",sans-serif;
+	overflow-x: hidden;
 }
 
 div.title {
@@ -21,7 +22,7 @@ div.name {
 }
 
 span.ver {
-	font-size:11px;
+	font-size:50%;
 	color: #000000;
 	text-align: right;
 }
@@ -31,12 +32,6 @@ body {
 	background: #D2EDDB;
 }
 
-#wrapper {
-	margin: 0 auto;
-	background: #D2EDDB;
-
-}
-	
 header {
 	width: 800px;
 	background: #D2EDDB;
@@ -47,40 +42,42 @@ header {
 
 #contents {
 	border-top: 3px solid #BDBDBD;
-	width: 800px;
+	max-width: 100%;
 	margin: 40px auto 0px;
 	padding: 10px 0 0 0;
 	text-align: left;
 }
 
 #contents2 {
+	max-width: 100%;
+	height: auto;
 	border-top: 3px solid #BDBDBD;
-	width: 800px;
-	margin: 0px auto 0px;
-	padding: 20px;
+	margin: 2px 0;
+	padding: 0;
 	text-align: left;
 }
 
 /*--menu------------------------------------------------------------*/
 #menu {
-	width:530px;
+	width:75%;
 	padding:20px 0 0 20px;
 	margin:0 auto;
 	list-style-type: none;
 }
 
 #menu li {
-	width:20%;
+	width:18%;
 	float:left;
 	padding:0;
 	margin:0;
 	text-align:center;
+	border: solid 2px #fff;
 }
 
 #menu li a {
 	width:auto;
 	color:#fff;
-	font-size:12px;
+	font-size:80%;
 	font-weight:bold;
 	padding:10px 0;
 	text-decoration:none;
@@ -92,23 +89,22 @@ header {
 	background:#555;
 }
 
-
 /*--common----------------------------------------------------------*/
 
 /*info_share*/
 
 form#info_share {
 	margin: 0 auto;
-	padding: 5px;
-	margin-bottom: 5px;
+	padding: 10px 20%;
+	margin-bottom: 15px;
 	border: none;
 	color: #666;
-	width: 750px; /*仮定*/
+	width: 100%;
 }
 
 form#info_share ul {
 	padding:0;
-	margin:0
+	margin:0;
 }
 
 form#info_share ul li {
@@ -117,57 +113,41 @@ form#info_share ul li {
 	padding:5px;
 }
 
-form#info_share ul li span {
-	width: 10em;
-	margin:0px;
+#info_share ul li span {
 	display:block;
-	float:left;
+	width: 10em;
+	padding:0;
+	margin-bottom: 15px;
+	border: none;
+	color: #666;
+}
+
+ul li.alone{
+	list-style:none;
+}
+
+ul li.alone span {
+	display:block;
+	width: 10em;
+	padding: 10px 0 0 20%;
+	margin-bottom: 15px;
+	border: none;
+	color: #666;
+	width: 100%;
+}
+
+form#info_share ul li select {
+	margin: 0 5px 0;
 }
 
 /*フロートをクリア*/
-form#info_shareh ul li:after {
+form#info_share ul li:after {
 	content:".";
 	display:block;
 	height:0;
 	visibility:hidden;
 	clear:both;
 }
-/*ボックスおしゃれにするの後で
-form#info_share ul li label .txtfiled, form#info_share select {
-	width:250px;
-	padding:3px 5px;
-	margin:0px;
-	color:#666;
-	border: solid 1px #ccc;
-
-    background: #fff;
-	-webkit-box-shadow: 2px 3px 5px -2px #ddd inset;
-	-moz-box-shadow: 2px 3px 5px -2px #ddd inset;
-	box-shadow: 2px 3px 5px -2px #ddd inset;
-
-	border-radius:6px;
-	-webkit-border-radius:6px;
-	-moz-border-radius:6px;
-}
-
-
-form#info_share ul li .txtfiled2 {
-	width:500px;
-	padding:3px 5px;
-	margin:0px;
-	color:#666;
-	border: solid 1px #ccc;
-
-    background: #fff;
-	-webkit-box-shadow: 2px 3px 5px -2px #ddd inset;
-	-moz-box-shadow: 2px 3px 5px -2px #ddd inset;
-	box-shadow: 2px 3px 5px -2px #ddd inset;
-
-	border-radius:6px;
-	-webkit-border-radius:6px;
-	-moz-border-radius:6px;
-}
-ここまで*/
 
 form#info_share ul li p label input {
 	margin-right:0.5em;
@@ -175,14 +155,14 @@ form#info_share ul li p label input {
 
 form#info_share input[type="submit"]  {
 	cursor:pointer;  
-	font-size:92%;
-	width:150px;
-	padding: 5px 0;
+	width:15%;
+	padding: 5px;
 	border-style:none;
 	color: #fff;
 	background:#d3d3d3;
 	text-align:center;
-	float: right;
+	float:right;
+	margin:0 50% 0;
 
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -193,29 +173,13 @@ form#info_share input[type="submit"]  {
 	text-shadow: 1px 1px 2px #000; 
 }
 
-form#info_share input[type="button"]  {
-	cursor:pointer;  
-	font-size:92%;
-	width:150px;
-	padding: 5px 0;
-	border-style:none;
-	color: #fff;
-	background:#d3d3d3;
-	text-align:center;
-	float: right;
-
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	-moz-box-shadow: 2px 2px 3px 1px #666;
-	-webkit-box-shadow: 2px 2px 3px 1px #666;
-	box-shadow: 2px 2px 3px 1px #666;
-	text-shadow: 1px 1px 2px #000; 
-}
-
-textarea#reply {
+p#reply {
+	border:solid 2px white;
 	background: #D2EDDB;
-	resize: none;
+	width: 50%;
+	height:100px;
+	margin-left: auto; margin-right: auto;
+	float: left;
 }
 
 /*contents2*/
@@ -223,39 +187,33 @@ textarea#reply {
 textarea#itiran{
 	resize: none;
 }
-/*ボックスおしゃれにするの後で
-
-.txtfiled2 {
-	width:500px;
-	padding:3px 5px;
-	margin:0px;
-	color:#666;
-	border: solid 1px #ccc;
-
-    background: #fff;
-	-webkit-box-shadow: 2px 3px 5px -2px #ddd inset;
-	-moz-box-shadow: 2px 3px 5px -2px #ddd inset;
-	box-shadow: 2px 3px 5px -2px #ddd inset;
-
-	border-radius:6px;
-	-webkit-border-radius:6px;
-	-moz-border-radius:6px;
-}
-ここまで*/
 
 textarea#naiyo {
 	resize: none;
 }
 
 p.textbox {
-	width:800px; height:300px; overflow:scroll;
+	max-width:75%;
+	height:350px;
+	overflow:scroll;
 	border: solid 1px #ccc;
 	background: #FFFFFF;
-	float: right;
 	white-space: nowrap;
+	margin-left: auto; margin-right: auto;
 }
 
 a {
 	text-decoration: none;
 	color: black;
+}
+.circle_important{
+	color: red;
+}
+
+.circle_attention{
+	color: yellow;
+}
+
+.circle_none{
+	color: gray;
 }

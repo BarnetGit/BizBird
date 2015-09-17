@@ -3,25 +3,13 @@ block reedscript
 	link(rel='stylesheet', href='/css/info_share.css')
 	script(type="text/javascript", src="/js/jquery-1.11.3.min.js")
 	script(type="text/javascript", src="/js/searchmodule.js")
-	script.
-		$(function(){
-			$(".History").dblclick(function () {
-				if($(this).text() == $("#reply").text()){
-					$("#reply").text("")
-					document.getElementById("hiddenNo").value="";
-				}else{
-					$("#reply").text($(this).text())
-					document.getElementById("hiddenNo").value=$(this).get(0).id;
-				}
-			});
-		});
 block title
 	div(class="title") 情報共有
 block content
 	nav
 		ul(id="menu")
 			li
-				a(href="/menu") メインメニュー
+				a(href="/") メインメニュー
 			li
 				a(href="/maintenance/report") 保守作業報告
 			li
@@ -36,11 +24,11 @@ block content
 				li
 					label
 						span タイトル：
-					input(type="text", name="Info_title", size="40", class="txtfiled",required)
+					input(type="text", name="Info_title", size="40", style="ime-mode: active;", class="txtfiled",required)
 				li
 					label
 						span 本文：
-					textarea(id="naiyo", name="Info_content", cols="80", rows="6", maxlength="100", required, class="txtfiled2")
+					textarea(id="naiyo", name="Info_content", cols="80", rows="6", maxlength="100",style="ime-mode: active;", required, class="txtfiled2")
 				li
 					label
 						span カテゴリ：
@@ -66,21 +54,45 @@ block content
 					|注目
 					input(type="submit", value="書き込み！")
 					input(type="hidden", value="", id="hiddenNo", name="parentNo")
-		ul
-			li
-				label
-					span リプライ元：
-				textarea(id="reply", name="reply", cols="80", rows="6", maxlength="100", class="txtfiled2", readonly)
+			ul
+				li(class="alone")
+					label
+						span リプライ元：
+						p(id="reply")
 	div(id="contents2")
 		p(class="textbox", onselectstart="return false")
 			if json
 				-var i = 0;
 				each search in json
-					
-					if search.child.length == 0
+					if search.value.child.length == 0
 						|・
 					else
 						a(href="javaScript:treeMenu('tree#{i}')") ■
-					a(class="History", id="#{search.id}")
-						| #{search.value[0]} #{search.value[1]} #{search.value[2]}
+					if search.value.Info_important == "true"
+						a(class="circle_important") ●
+					else
+						a(class="circle_none") ●
+					if search.value.Info_attention == "true"
+						a(class="circle_attention") ●
+					else
+						a(class="circle_none") ●
+					a(class="History", ondblclick="dblclickEv(this, #{search.value.myID})")
+						| #{search.value.createdate} #{search.value.Info_title} #{search.value.Info_content}
 						br
+					-var space = "　 "
+					span(id="tree#{i}", style="display:none;")
+						each childtext in search.value.child
+							| #{space}┗ 
+							if childtext.Info_important == "true"
+								a(class="circle_important") ●
+							else
+								a(class="circle_none") ●
+							if childtext.Info_attention == "true"
+								a(class="circle_attention") ●
+							else
+								a(class="circle_none") ●
+							a(class="History", ondblclick="dblclickEv(this, #{search.value.myID})")
+								| #{childtext.createdate} #{childtext.Info_title} #{childtext.Info_content}
+								br
+							-space += "　 "
+					-i++

@@ -1,0 +1,35 @@
+extends layout
+block reedscript
+	link(rel='stylesheet', href='/css/index.css')
+block content
+	div(id="contents")
+			form(id="form1", action="/login", target="_self", method='post')
+				ul
+					li
+						label
+							span ＩＤ：
+							input(type="text", name="id", class="txtfiled")
+					li
+						label
+							span パスワード：
+							input(type="text", name="password", class="txtfiled")
+					li
+						p
+							input(type="submit", value="開始")
+
+	div(id="contents2")
+		section
+			p(class="textbox")
+				if(NewMaintenance[0])
+					| (保守作業)
+					br
+					each Maintenance in NewMaintenance
+						| #{Maintenance[0]}　#{Maintenance[1]}
+						br
+					| ___________________________________________________________________
+					br
+				if(NewInfo[0])
+					| (情報共有)
+					each Info in NewInfo
+						br
+						|  #{Info[0]}　#{Info[1]}

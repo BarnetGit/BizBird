@@ -1,14 +1,15 @@
 doctype html
 html(lang="ja")
 	head
+		style
+			| body{-webkit-text-size-adjust: 100%};
 		meta(charset='UTF-8')
 		title= title
 		block reedscript
 	body
-		div(id="wrapper")
 		header
 			block title
 			div(class="name")
 				|Biz Bird　　
-				span(class="ver") Ver0.01
+				span(class="ver") Ver1.00
 		block content
