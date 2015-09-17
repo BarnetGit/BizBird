@@ -53,7 +53,7 @@ header {
 	border-top: 3px solid #BDBDBD;
 	margin: 2px auto 0px;
 	padding: 0;
-	text-align: left;
+	text-align: center;
 }
 
 /*--menu------------------------------------------------------------*/
@@ -189,6 +189,7 @@ p.textbox {
 	border: solid 1px #ccc;
 	background: #FFFFFF;
 	white-space: nowrap;
+	margin: 0 auto;
 }
 
 a {

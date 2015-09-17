@@ -8,32 +8,32 @@ var BizBird = new bizbird();
 
 var app = express.Router();
 
-//ç™»éŒ²
+//“o˜^
 app.post('/', function(req, res){
 	var json = req.body;
 	var IDname = 'LoginID';
-	//å‰å‡¦ç†
-	//é‡è¤‡ãƒã‚§ãƒƒã‚¯
+	//‘Oˆ—
+	//d•¡ƒ`ƒFƒbƒN
 	CouchCnt.authenticate('logincheck', 'ViewLoginCheck', function(err,View){
 		for(var LView of View){
 			if(LView.key == json.id){
-				res.render('err', {title: 'ã‚¨ãƒ©ãƒ¼', err: 'èªè¨¼ã‚¨ãƒ©ãƒ¼'});
+				res.render('err', {title: 'ƒGƒ‰[', err: '”FØƒGƒ‰['});
 				return;
 			}
 		}
 	});
 	
-	//ãƒãƒƒã‚·ãƒ¥åŒ–
+	//ƒnƒbƒVƒ…‰»
 	json.password = BizBird.hashPassword(json.password);
 
-	//DBç™»éŒ²ã®é–¢æ•°å‘¼ã¶
+	//DB“o˜^‚ÌŠÖ”ŒÄ‚Ô
 	CouchCnt.save(json, IDname, function(err, result){
 		if(err){
-			res.render('err', {title: 'ã‚¨ãƒ©ãƒ¼', err: 'ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ç™»éŒ²ã‚¨ãƒ©ãƒ¼'});
+			res.render('err', {title: 'ƒGƒ‰[', err: 'ƒf[ƒ^ƒx[ƒX“o˜^ƒGƒ‰['});
 			return;
 		}
 	});
-	res.render('login', {title: 'ãƒ­ã‚°ã‚¤ãƒ³ç”»é¢'});
+	res.render('login', {title: 'ƒƒOƒCƒ“‰æ–Ê'});
 	return;
 });
 

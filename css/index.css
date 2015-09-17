@@ -1,7 +1,8 @@
 /*--Text------------------------------------------------------------*/
 body {
-	font-size: 92%;
 	font-weight: bold;
+	font-family: "ÇlÇr ÉSÉVÉbÉN",sans-serif;
+	overflow-x: hidden;
 }
 
 div.name {
@@ -13,7 +14,7 @@ div.name {
 }
 
 span.ver {
-	font-size:11px;
+	font-size:50%;
 	color: #000000;
 	text-align: right;
 }
@@ -22,35 +23,29 @@ span.ver {
 body {
 	background: #D2EDDB;
 }
-
-#wrapper {
-	margin: 0 auto;
-	background: #D2EDDB;
-
-}
 	
 header {
-	width: 800px;
+	max-width: 100%;
 	background: #D2EDDB;
 	margin: 0 auto 80px auto;
 	padding: 10px 0;
 }
 
 #contents {
-	width: 800px;
+	border-top: 3px solid #BDBDBD;
+	max-width: 100%;
 	margin: 0 auto;
 	padding: 40px 0;
 	text-align: center;
-	border-top: 3px solid #BDBDBD;
 }
 
 #contents2 {
-	width: 800px;
-	margin: 0 auto;
-	padding: 10px 0;
-	min-height: 300px;
-	text-align: center;
+	max-width: 100%;
+	height: auto;
 	border-top: 3px solid #BDBDBD;
+	margin:0 auto;
+	padding: 0;
+	text-align: center;
 }
 
 /*--common----------------------------------------------------------*/
@@ -145,8 +140,8 @@ textarea#txt1{
 	resize: none;
 }
 p.textbox {
-	float: right;
-	width:700px;
+	margin: 0 auto;
+	max-width:70%;
 	height:300px;
 	overflow:scroll;
 	border: solid 1px #ccc;

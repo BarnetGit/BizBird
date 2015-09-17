@@ -27,13 +27,12 @@ app.use('/js', express.static('js'));
 app.use('/css', express.static('css'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
-
 app.use(session({
   secret: 'toddleBizBird',
   resave: false,
   saveUninitialized: false,
   cookie: {
-    maxAge: 30 *  60 * 1000 // 30min.
+    maxAge:24 * 60 *  60 * 1000 // one day.
   }
 }));
 
@@ -42,9 +41,6 @@ app.use(session({
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
 
-
-
-
 app.use('/login', login);
 app.use('/', BizBird.loginCheck, routes);
 app.use('/create', create);
@@ -52,46 +48,6 @@ app.use('/maintenance', maintenance);
 app.use('/info', info);
 app.use('/tool', tool);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-//ここからテスト用
-app.get('/test', function(req, res){
-	var Order = 2;
-	var limit = 10;
-	var Weekdate = new Date();
-	Weekdate.setDate(Weekdate.getDate() - 7);
-	Weekdate = Weekdate.toFormat("YYYY-MM-DD");
-	CouchCnt.getView('Maintenance', 'SearchDate', Order, limit, function(err, MaintenanceView){
-		CouchCnt.getView('info_share', 'NewDate', Order, limit, function(err, InfoView){
-			var MaintenanceJson = [];
-			var InfoJson = [];
-			for(var MView of MaintenanceView){
-				if(Weekdate <= MView){
-					MaintenanceJson.push([MView.value[6], MView.value[2]]);
-				}
-			}
-			for(var IView of InfoView){
-				if(Weekdate <= IView){
-					InfoJson.push(IView.value);
-				}
-			}
-			console.log(MaintenanceJson);
-			console.log(InfoJson);
-			res.render('index', {title: 'ログイン -- BizBird', NewMaintenance: MaintenanceJson, NewInfo: InfoJson});
-		});
-	});
-});
 
 app.get('*', function(req, res){
 	res.render('err', {title: 'エラー', err: '存在しないページです'});
