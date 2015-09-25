@@ -26,6 +26,9 @@ app.use(helmet());
 app.use('/js', express.static('js'));
 app.use('/css', express.static('css'));
 app.use(bodyParser.urlencoded({extended: true}));
+
+
+
 app.use(cookieParser());
 app.use(session({
   secret: 'toddleBizBird',

@@ -2,12 +2,13 @@ var express = 		require('express')
   ,	couchbase = 	require('./couchbase')
   , bizbird =		require('./bizbird')
 				 	require('date-utils');
+var logger = require('./logger');
 var CouchCnt = new couchbase();
 var BizBird = new bizbird();
 var app = express.Router();
 
 app.get('/report', function(req, res){
-	res.render('hosyu_report', {title: '保守作業報告 -- BizBird'});
+	res.render('hosyu_report', {title: '保守作業報告 -- BizBird', Name: req.session.user.name});
 });
 
 app.get('/search', function(req, res){
@@ -18,6 +19,7 @@ app.get('/history/:id', function(req, res){
 	var CouchID = "Maintenance" + req.params.id;
 	CouchCnt.ShowKeyContent(CouchID, function(err, json){
 		if(err){
+			logger.request.error('保守履歴：存在しない履歴の取得：' + req.session.user);
 			res.render('err', {title: 'エラー', err: '存在しません'});
 			return;
 		}
@@ -44,9 +46,11 @@ app.post('/history', function(req, res){
 	
 	CouchCnt.ReplaceDocument(Key, json, function(err, result){
 		if(err){
+			logger.request.error('保守履歴：データベース更新エラー：' + req.session.user);
 			res.render('err', {title: 'エラー', err: 'データベース更新エラー'});
 			return;
 		}
+		logger.request.info('保守履歴：更新完了：' + req.session.user);
 		res.render('result', {title: '更新完了 -- BizBird', msg: '更新完了しました', URLtext: '/maintenance/search'});
 	});
 	
@@ -59,9 +63,11 @@ app.post('/history/delete', function(req, res){
 	var limit = 0;
 	CouchCnt.DeleteDocument(deleteID, function(err, result){
 		if(err){
+			logger.request.error('保守履歴：データベース削除エラー：' + req.session.user);
 			res.render('err', {title: 'エラー', err: 'データベース削除エラー'});
 			return;
 		}
+		logger.request.info('保守履歴：削除完了：' + req.session.user);
 		res.render('result', {title: '削除完了 -- BizBird', msg: '削除完了しました', URLtext: '/maintenance/search'});
 	});
 });
@@ -86,10 +92,12 @@ app.post('/report', function(req, res){
 	console.log(json);
 	CouchCnt.save(json, Incrementname, IDname, function(err, result){
 		if(err){
+			logger.request.error('保守報告：データベース登録エラー：' + req.session.user);
 			res.render('err', {title: 'エラー', err: 'データベース登録エラー'});
 			return;
 		}
 		var Order = 2;
+		logger.request.info('保守報告：書き込み完了：' + req.session.user);
 		res.render('result', {title: '書き込み完了 -- BizBird', msg: '書き込み完了しました', URLtext: '/maintenance/report'});
 	});
 });

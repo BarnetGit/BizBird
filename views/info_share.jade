@@ -15,6 +15,8 @@ block content
 			li
 				a(href="/maintenance/search") 保守作業履歴検索
 			li
+				a(style="background:#555;") 情報共有
+			li
 				a(href="/info/search") 情報検索
 			li
 				a(href="/tool") ツール
@@ -28,7 +30,7 @@ block content
 				li
 					label
 						span 本文：
-					textarea(id="naiyo", name="Info_content", cols="80", rows="6", maxlength="100",style="ime-mode: active;", required, class="txtfiled2")
+					textarea(id="naiyo", name="Info_content", cols="80", rows="6",style="ime-mode: active;", required, class="txtfiled2")
 				li
 					label
 						span カテゴリ：
@@ -57,9 +59,10 @@ block content
 			ul
 				li(class="alone")
 					label
-						span リプライ元：
+						span リプライ先：
 						p(id="reply")
 	div(id="contents2")
+		p(style="color: #666; padding-left: 10%") スレッド一覧
 		p(class="textbox", onselectstart="return false")
 			if json
 				-var i = 0;

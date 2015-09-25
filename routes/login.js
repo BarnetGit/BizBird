@@ -4,6 +4,7 @@ var express = 		require('express')
 				 	require('date-utils');
 var CouchCnt = new couchbase();
 var BizBird = new bizbird();
+var logger = require('./logger');
 
 var app = express.Router();
 
@@ -56,8 +57,10 @@ app.post('/', function(req, res, next){
 	CouchCnt.authenticate('logincheck', 'ViewLoginCheck', function(err,View){
 		for(var LView of View){
 			if(LView.key == id){
-				if(LView.value == password){
-					req.session.user = {name: req.body.userName};
+				if(LView.value[0] == password){
+					var Name = LView.value[1]
+					req.session.user = {name: Name};
+					logger.request.info('ログインユーザー：' + Name);
 					res.render('index', {title: 'メインメニュー -- BizBird'});
 					return;
 				}else{

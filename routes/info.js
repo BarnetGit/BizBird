@@ -2,6 +2,7 @@ var express = 		require('express')
   ,	couchbase = 	require('./couchbase')
   , bizbird =		require('./bizbird')
 				 	require('date-utils');
+var logger = require('./logger');
 var CouchCnt = new couchbase();
 var BizBird = new bizbird();
 var app = express.Router();
@@ -12,6 +13,7 @@ app.get('/share', function(req, res){
 	var limit = 100;
 	CouchCnt.getView('info_share', 'parent', DesOrder, limit, function(err,ParentView){
 		if(err){
+			logger.request.error('情報共有：データベースエラー：' + req.session.user);
 			res.render('err', {title: 'エラー', err: 'データベースエラー'});
 			return;
 		}
@@ -19,6 +21,7 @@ app.get('/share', function(req, res){
 		limit = 0;
 		CouchCnt.getView('info_share', 'child', AscOrder, limit, function(err,ChildView){
 			if(err){
+			logger.request.error('情報共有：データベースエラー：' + req.session.user);
 				res.render('err', {title: 'エラー', err: 'データベースエラー'});
 				return;
 			}
@@ -45,6 +48,7 @@ app.get('/history/:id', function(req, res){
 	var CouchID = "info" + req.params.id;
 	CouchCnt.ShowKeyContent(CouchID, function(err, json){
 		if(err){
+			logger.request.error('情報履歴：存在しない値の取得：' + req.session.user);
 			res.render('err', {title: 'エラー', err: '存在しません'});
 			return;
 		}
@@ -75,9 +79,11 @@ app.post('/share', function(req, res){
 	
 	CouchCnt.save(json, Incrementname, IDname,  function(err, result){
 		if(err){
+			logger.request.error('情報共有：データベース登録エラー：' + req.session.user);
 			res.render('err', {title: 'エラー', err: 'データベース登録エラー'});
 			return;
 		}
+		logger.request.info('情報共有：書き込み完了：' + req.session.user);
 		res.render('result', {title: '書き込み完了 -- BizBird', msg: '書き込み完了しました', URLtext: '/info/share'});
 	});
 });
@@ -94,12 +100,14 @@ app.post('/search', function(req, res){
 	console.log(json);
 	CouchCnt.getView('info_share', 'parent', DesOrder, limit, function(err,ParentView){
 		if(err){
+			logger.request.error('情報共有：データベースエラー：' + req.session.user);
 			res.render('err', {title: 'エラー', err: 'データベースエラー'});
 			return;
 		}
 		limit = 0;
 		CouchCnt.getView('info_share', 'child', AscOrder, limit, function(err,ChildView){
 			if(err){
+				logger.request.error('情報共有：データベースエラー：' + req.session.user);
 				res.render('err', {title: 'エラー', err: 'データベースエラー'});
 				return;
 			}
@@ -118,12 +126,14 @@ app.post('/search/sort', function(req, res){
 	var limit = 100;
 	CouchCnt.getView('info_share', 'parent', DesOrder, limit, function(err,ParentView){
 		if(err){
+			logger.request.error('情報共有：ソートのデータベースエラー：' + req.session.user);
 			res.render('err', {title: 'エラー', err: 'データベースエラー'});
 			return;
 		}
 		limit = 0;
 		CouchCnt.getView('info_share', 'child', AscOrder, limit, function(err,ChildView){
 			if(err){
+				logger.request.error('情報共有：ソートのデータベースエラー：' + req.session.user);
 				res.render('err', {title: 'エラー', err: 'データベースエラー'});
 				return;
 			}
@@ -151,6 +161,7 @@ app.post('/history', function(req, res){
 	console.log(json);
 	CouchCnt.ShowKeyContent(Key, function(err, value){
 		if(err){
+			logger.request.error('情報共有履歴：データベースエラー：' + req.session.user);
 			res.render('err', {title: 'エラー', err: 'データベースエラー'});
 			return;
 		}
@@ -165,8 +176,10 @@ app.post('/history', function(req, res){
 		CouchCnt.ReplaceDocument(Key, value, function(err, couchres){
 			if(err){
 				res.render('err', {title: 'エラー', err: 'データベースエラー'});
+				logger.request.error('情報共有履歴：データベースエラー：' + req.session.user);
 				return;
 			}
+			logger.request.info('情報共有履歴：更新完了：' + req.session.user);
 			res.render('result', {title: '更新完了 -- BizBird', msg: '更新完了しました', URLtext: '/info/search'});
 		});
 	});

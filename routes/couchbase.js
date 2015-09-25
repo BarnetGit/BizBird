@@ -1,5 +1,5 @@
 var Couchbase = require('couchbase');
-var Cluster = new Couchbase.Cluster('couchbase://***.***.***.***:****');
+var Cluster = new Couchbase.Cluster('couchbase://***.***.**.***:****');
 var Bucket = Cluster.openBucket('serviceReport');
 var BucketSec = Cluster.openBucket('security');
 var BucketLogin = Cluster.openBucket('Login');

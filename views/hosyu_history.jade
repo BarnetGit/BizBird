@@ -21,6 +21,8 @@ block content
 				a(href="/info/share") 情報共有
 			li
 				a(href="/info/search") 情報検索
+			li
+				a(href="/tool") ツール
 	div(id="contents")
 		form(id="form_hosyu_report", action="/maintenance/history", method="post", name="form1")
 			ul
@@ -46,6 +48,7 @@ block content
 					label
 						span 作業時間：
 					input(type="text", name="Maintenance_time",size="40", required, class="txtfiled",style="ime-mode: inactive;",value='#{json.Maintenance_time}')
+					|時間
 				li
 					label
 						span 客先：

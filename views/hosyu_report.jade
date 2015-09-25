@@ -14,6 +14,8 @@ block content
 			li
 				a(href="/") メインメニュー
 			li
+				a(style="background:#555;") 保守作業報告
+			li
 				a(href="/maintenance/search") 保守作業履歴検索
 			li
 				a(href="/info/share") 情報共有
@@ -37,7 +39,7 @@ block content
 				li
 					label
 						span 作業者：
-					input(type="text", name="Maintenance_worker",size="40", required, class="txtfiled",style="ime-mode: active;")
+					input(type="text", name="Maintenance_worker",size="40", required, class="txtfiled",style="ime-mode: active;",value='#{Name}')
 				li
 					label
 						span 作業場所：
@@ -46,6 +48,7 @@ block content
 					label
 						span 作業時間：
 					input(type="text", name="Maintenance_time",size="40", required, class="txtfiled",style="ime-mode: inactive;")
+					|時間
 				li
 					label
 						span 客先：
