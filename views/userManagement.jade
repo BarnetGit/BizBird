@@ -1,0 +1,63 @@
+extends layout
+block reedscript
+	link(rel='stylesheet', href='/css/register.css')
+	script(type="text/javascript", src="/js/jsmodule.js")
+block title
+	div(class="title") ユーザーＩＤマスタ管理
+block content
+	nav
+		ul(id="menu")
+			li
+				a(href="/tool/register") ユーザー登録
+			li
+				a(style="background:#555;") ユーザＩＤマスタ管理
+			li
+				a(style="background:#555;") カテゴリマスタ管理
+			li
+				a(style="background:#555;") データバックアップ 
+			li
+				a(style="background:#555;") 統計情報の表示 
+			li
+				a(href="/tool") ツール
+				
+	div(id="contents")
+			form(id="form1", action="/tool/userManagement", target="_self", method='post')
+				ul
+					li
+						label
+							span 古いパスワード：
+							input(type="password", name="oldpassword", class="txtfiled", autofocus, style="ime-mode: inactive;", required)
+					li
+						label
+							span 新しいパスワード：
+							input(type="password", name="newpassword", class="txtfiled", style="ime-mode: inactive;", required)
+					li
+						label
+							span 新しいパスワード確認：
+							input(type="password", name="passconfirm", class="txtfiled", style="ime-mode: inactive;", required)
+					li
+							input(type="submit", value="更新")
+							input(type="button", value="削除", onclick="deletedoc('form1', '/tool/userManagement/delete')")
+	div(id="contents2")
+		if Flag == "1"
+				if(List[0])
+				label(style="margin: 10%;") ユーザー一覧
+						table( border="1", width="80%", frame="void", bgcolor="#fff", align="center", overflow:scroll, heigth="200px")
+							tr
+								th ＩＤ
+								th 名前
+								th ルート権限
+								th 編集
+							each loginlist in List
+								tr
+									td #{loginlist[0]}
+									td #{loginlist[1]}
+									if(loginlist[2] == "1")
+										td あり
+									else
+										td なし
+									td
+										a(href="/tool/userModify/#{loginlist[0]}", class="btn2") ●
+		else
+			p(style="text-align: center;") 管理者ユーザー以外は自分以外のユーザー情報を変更できません
+		a(href="/tool", class="btn_close") 戻る

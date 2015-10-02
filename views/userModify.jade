@@ -1,0 +1,46 @@
+extends layout
+block reedscript
+	link(rel='stylesheet', href='/css/register.css')
+	script(type="text/javascript", src="/js/jsmodule.js")
+block title
+	div(class="title") ユーザーＩＤマスタ管理
+block content
+	nav
+		ul(id="menu")
+			li
+				a(href="/tool/register") ユーザー登録
+			li
+				a(style="background:#555;") ユーザＩＤマスタ管理
+			li
+				a(style="background:#555;") カテゴリマスタ管理
+			li
+				a(style="background:#555;") データバックアップ 
+			li
+				a(style="background:#555;") 統計情報の表示 
+			li
+				a(href="/tool") ツール
+				
+	div(id="contents")
+			form(id="form1", action="/tool/userModify", target="_self", method='post')
+				ul
+					li
+						label
+							span ＩＤ：
+							input(type="text", name="id", class="txtfiled", autofocus, style="ime-mode: inactive;", value='#{json.id}', readonly)
+					li
+							
+						label
+							span 名前：
+							input(type="text", name="name", class="txtfiled", autofocus, style="ime-mode: inactive;", required, value='#{json.name}')
+					li
+						label
+							span ルート権限：
+							if(json.manager == "1")
+								input(type="checkbox", name="manager",  value="1", checked)
+							else
+								input(type="checkbox", name="manager",  value="1")
+					li
+							input(type="submit", value="更新")
+							input(type="button", value="削除", onclick="deletedoc('form1', '/tool/userModify/delete')")
+	div(id="contents2")
+			a(href="/tool/userManagement", class="btn_close") 戻る

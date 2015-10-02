@@ -2,7 +2,6 @@ var Couchbase = require('couchbase');
 var Cluster = new Couchbase.Cluster('couchbase://***.***.***.***:****');
 var Bucket = Cluster.openBucket('serviceReport');
 var BucketLogin = Cluster.openBucket('Login');
-
 var CouchbaseCnt = function(){};
 
 //カウチベースに登録
@@ -108,7 +107,7 @@ CouchbaseCnt.prototype.ReplaceDocument = function(CouchID, json, callback){
 //認証を行う
 CouchbaseCnt.prototype.authenticate = function (devname, viewname, callback) {
 	var ViewQuery = Couchbase.ViewQuery;
-	var query = ViewQuery.from(devname, viewname);
+	var query = ViewQuery.from(devname, viewname).stale(ViewQuery.Update.BEFORE);
 	
 	var jsonarray = new Array();
 	
@@ -136,5 +135,44 @@ CouchbaseCnt.prototype.register = function (IDname, json, callback){
 	});
 };
 
+//ユーザー更新
+CouchbaseCnt.prototype.ReplaceDocument2 = function(CouchID, json, callback){
+	console.log("couchID: ", CouchID, "json: ", json);
+	BucketLogin.replace(CouchID, json, function(err, res){
+		if(err){
+			console.log('BucketReplace failed', err);
+			callback(err, res);
+			return;
+		}
+		console.log('BucketReplace Sucsses');
+		callback(err,res);
+	});
+};
 
+//ユーザー削除
+CouchbaseCnt.prototype.DeleteDocument2 = function(id, callback){
+	BucketLogin.remove(id, function(err, res){
+		if(err){
+			console.log('BucketRemove failed', err);
+			callback(err, res);
+			return;
+		}
+		console.log('BucketRemove Sucsses');
+		callback(err, res);
+	});
+};
+
+
+//ユーザー管理時の情報取得（ルーティング用）
+CouchbaseCnt.prototype.ShowKeyContent2 = function(Key, callback){
+	BucketLogin.get(Key, function(err, json){
+		if(err){
+			console.log('Bucket get failed:' + err);
+			callback(err, json);
+			return;
+		}
+		console.log('Bucket get sucsses');
+		callback(err, json.value);
+	});
+};
 module.exports = CouchbaseCnt;
