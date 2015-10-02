@@ -9,13 +9,13 @@ block content
 			li
 				a(style="background:#555;") ユーザー登録
 			li
-				a(href="") ユーザＩＤマスタ管理
+				a(href="/tool/userManagement") ユーザＩＤマスタ管理
 			li
-				a(href="") カテゴリマスタ管理
+				a(style="background:#555;") カテゴリマスタ管理
 			li
-				a(href="") データバックアップ 
+				a(style="background:#555;") データバックアップ 
 			li
-				a(href="") 統計情報の表示 
+				a(style="background:#555;") 統計情報の表示 
 			li
 				a(href="/tool") ツール
 	div(id="contents")
@@ -24,18 +24,27 @@ block content
 					li
 						label
 							span ＩＤ：
-							input(type="text", name="id", class="txtfiled", autofocus, style="ime-mode: inactive;")
+							input(type="text", name="id", class="txtfiled", autofocus, style="ime-mode: inactive;", required)
 					li
 						label
 							span パスワード：
-							input(type="password", name="password", class="txtfiled", style="ime-mode: inactive;")
+							input(type="password", name="password", class="txtfiled", style="ime-mode: inactive;", required)
 					li
 						label
 							span 名前：
-							input(type="text", name="name", class="txtfiled", autofocus, style="ime-mode: inactive;")
+							input(type="text", name="name", class="txtfiled", autofocus, style="ime-mode: inactive;", required)
+					li
+						if Flag == "1"
+							label
+								span ルート権限をつける：
+								input(type="checkbox", name="manager",  value="1")
+						else
+							label
+								span(style="color: #bfbfbf;") ルート権限をつける：
+								input(type="checkbox", name="manager",  value="0",  disabled="disabled")
 					li
 						p
-							input(type="submit", value="登録")
+							input(type="submit", value="登録", style="margin:0;")
 	div(id="contents2")
 		p
 			a(href="/tool", class="btn_close") 戻る

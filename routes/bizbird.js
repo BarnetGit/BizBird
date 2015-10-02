@@ -128,8 +128,33 @@ sha512.update(password)
 password = sha512.digest('hex')
 
 return password;
-}
+};
 
+
+//ユーザー管理時の動作
+BizBird.prototype.UserModify = function(session, password, callback){
+	var createjson = {
+		id: session.id,
+		password: password,
+		name: session.name,
+		manager: session.flag,
+		};
+	var key = session.id;
+	callback(key, createjson);
+};
+
+
+//管理者によるユーザー管理時の動作
+BizBird.prototype.RootUserModify = function(json, password, callback){
+	var createjson = {
+		id: json.id,
+		password: password,
+		name: json.name,
+		manager: json.manager,
+		};
+	var key = json.id;
+	callback(key, createjson);
+};
 
 
 module.exports = BizBird;

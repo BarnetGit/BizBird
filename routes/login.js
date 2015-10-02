@@ -51,14 +51,18 @@ app.get('/', function(req, res){
 
 //ログイン
 app.post('/', function(req, res, next){
+	delete req.session.user;
 	var id = req.body.id;
 	var password =  BizBird.hashPassword(req.body.password);
 	CouchCnt.authenticate('logincheck', 'ViewLoginCheck', function(err,View){
 		for(var LView of View){
 			if(LView.key == id){
 				if(LView.value[0] == password){
-					var Name = LView.value[1]
-					req.session.user = {name: Name};
+					var Name = LView.value[1];
+					var ID = LView.key;
+					var Flag = LView.value[2];
+					req.session.user = {name: Name, id: ID, flag: Flag};
+					console.log(req.session.user);
 					logger.request.info('ログインユーザー：' + Name);
 					res.render('index', {title: 'メインメニュー -- BizBird'});
 					return;
