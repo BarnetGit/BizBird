@@ -79,7 +79,7 @@ block content
 						a(class="circle_attention") ●
 					else
 						a(class="circle_none") ●
-					a(class="History", ondblclick="dblclickEv(this, #{search.value.myID})")
+					a(class="History", onclick="dblclickEv(this, #{search.value.myID})")
 						| #{search.value.createdate} #{search.value.Info_title} #{search.value.Info_content}
 						br
 					-var space = "　 "
@@ -94,7 +94,7 @@ block content
 								a(class="circle_attention") ●
 							else
 								a(class="circle_none") ●
-							a(class="History", ondblclick="dblclickEv(this, #{search.value.myID})")
+							a(class="History", onclick="dblclickEv(this, #{search.value.myID})")
 								| #{childtext.createdate} #{childtext.Info_title} #{childtext.Info_content}
 								br
 							-space += "　 "

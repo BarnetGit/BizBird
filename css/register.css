@@ -51,7 +51,7 @@ header {
 #contents2 {
 	max-width: 15%;
 	height: auto;
-	margin: 0 20% 0 auto;
+	margin: 0 auto;
 	padding: 0; 
 }
 
@@ -96,7 +96,7 @@ a {
 li {
 	list-style: none;
 	padding: 1% 2%;
-	width: 40%;
+	width: 80%;
 	margin: 2% auto;
  }
  
@@ -111,6 +111,7 @@ a.btn{
 	transition: none;
 	box-shadow: 0 3px 0 blue;
 	text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+	margin: 0 auto;
 }
 
 a.btn:hover {
@@ -146,3 +147,90 @@ a.btn_close:active {
 	box-shadow: none;
 }
 
+/*FORM1*/
+
+form#form1 {
+	margin: 20px auto;
+	padding: 10px;
+	margin-bottom: 15px;
+	border: 1px solid #ccc;
+	color: #666;
+	background: #F0FFF0;
+	width: 500px;
+}
+
+form#form1 ul {
+	padding:0;
+	margin:0;
+	text-align:center;
+}
+
+form#form1 ul li {
+	list-style:none;
+	margin:0px;
+	padding:10px;
+	border-top: 2px solid #FFF;
+	font-size: 12px;
+}
+
+form#form1 ul li:first-child {
+	border-top:none;
+}
+
+form#form1 ul li span {
+	width: 17em;
+	margin:0px;
+	display:block;
+	float:left;
+}
+
+/*フロートをクリア*/
+form#form1 ul li:after {
+	content:".";
+	display:block;
+	height:0;
+	visibility:hidden;
+	clear:both;  
+}
+
+form#form1 ul li label .txtfiled, form#form1 select {
+	width:80%;
+	padding:3px 5px;
+	margin:0px;
+	color:#666;
+	border: solid 1px #ccc;
+    background: #fff;
+	-webkit-box-shadow: 2px 3px 5px -2px #ddd inset;
+	-moz-box-shadow: 2px 3px 5px -2px #ddd inset;
+	box-shadow: 2px 3px 5px -2px #ddd inset;
+	border-radius:6px;
+	-webkit-border-radius:6px;
+	-moz-border-radius:6px;
+}
+
+form#form1 select {
+	width:100px;
+}
+
+form#form1 ul li p label input {
+	margin-right:0.5em;
+}
+
+form#form1 ul li input[type="submit"] {
+	cursor:pointer;  
+	font-size:92%;
+	width:150px;
+	padding: 5px 0;
+	border-style:none;
+	color: #fff;
+	background:#d3d3d3;
+	text-align:center
+
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-moz-box-shadow: 2px 2px 3px 1px #666;
+	-webkit-box-shadow: 2px 2px 3px 1px #666;
+	box-shadow: 2px 2px 3px 1px #666;
+	text-shadow: 1px 1px 2px #000; 
+}

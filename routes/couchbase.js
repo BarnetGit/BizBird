@@ -1,7 +1,6 @@
 var Couchbase = require('couchbase');
-var Cluster = new Couchbase.Cluster('couchbase://***.***.**.***:****');
+var Cluster = new Couchbase.Cluster('couchbase://***.***.***.***:****');
 var Bucket = Cluster.openBucket('serviceReport');
-var BucketSec = Cluster.openBucket('security');
 var BucketLogin = Cluster.openBucket('Login');
 
 var CouchbaseCnt = function(){};
@@ -10,7 +9,7 @@ var CouchbaseCnt = function(){};
 CouchbaseCnt.prototype.save = function(json, Incrementname, IDname, callback){
 	var Incremental = 1
 	//カウチベース内でのインクリメント（++）操作
-	BucketSec.counter(Incrementname, Incremental, function(err,couchid){
+	BucketLogin.counter(Incrementname, Incremental, function(err,couchid){
 		if(err){
 			console.log('インクリメントエラー' + err);
 			callback(err,res);
@@ -121,6 +120,19 @@ CouchbaseCnt.prototype.authenticate = function (devname, viewname, callback) {
     	}
     	console.log('Found', meta.total_rows);
     	callback(err,res);
+	});
+};
+
+
+//ユーザー登録
+CouchbaseCnt.prototype.register = function (IDname, json, callback){
+	BucketLogin.insert(IDname, json, function(err,res){
+		if(err){
+			console.log('Insert err' + err);
+		}else{
+			console.log('Insert Sucsses!');
+		}
+		callback(err,res);
 	});
 };
 

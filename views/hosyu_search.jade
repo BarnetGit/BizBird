@@ -53,15 +53,15 @@ block content
 					input(id="searchtext", type="text", name="content", size="40", class="txtfiled",style="ime-mode: active;")
 					label 　　　　
 					input(type="submit", value="検索！", onClick="return PostSendMaintenanceSearch()")
-				li
-					label
-						span ソート順：
-					select(id="sort", name="sortorder", onChange="SortValueMaintenanceSearch()")
-						option(value="worker") 作業者
-						option(value="date_asc") 日付：昇順
-						option(value="date_des", selected) 日付：降順
 	div(id="contents2")
 		ul(id="kekka")
+			li
+				label
+					span(style="color: #666;") ソート順：
+				select(id="sort", name="sortorder", onChange="SortValueMaintenanceSearch()")
+					option(value="worker") 作業者
+					option(value="date_asc") 日付：昇順
+					option(value="date_des", selected) 日付：降順
 			li
 				label
 					span 検索結果：

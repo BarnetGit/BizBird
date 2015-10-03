@@ -199,6 +199,7 @@ p.textbox {
 	overflow:scroll;
 	border: solid 1px #ccc;
 	background: #FFFFFF;
+	white-space: nowrap;
 	margin-left: auto; margin-right: auto;
 	color: black;
 }

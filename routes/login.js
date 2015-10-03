@@ -52,8 +52,7 @@ app.get('/', function(req, res){
 //ログイン
 app.post('/', function(req, res, next){
 	var id = req.body.id;
-	var password = req.body.password;
-	//var password =  BizBird.hashPassword(req.body.password);
+	var password =  BizBird.hashPassword(req.body.password);
 	CouchCnt.authenticate('logincheck', 'ViewLoginCheck', function(err,View){
 		for(var LView of View){
 			if(LView.key == id){

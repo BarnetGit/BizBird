@@ -3,7 +3,7 @@ var logger = exports = module.exports = {};
 log4js.configure({
      appenders: [
          {
-             "type": "datefile",
+             "type": "dateFile",
              "category": "request",
              "filename": "./logs/request.log",
              "pattern": "-yyyy-MM-dd",

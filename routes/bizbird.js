@@ -119,7 +119,7 @@ BizBird.prototype.loginCheck = function(req, res, next) {
 
 
 
-/*
+
 //パスワードのハッシュを作成する
 BizBird.prototype.hashPassword = function(password) {
 
@@ -127,8 +127,9 @@ var sha512 = crypto.createHash('sha512');
 sha512.update(password)
 password = sha512.digest('hex')
 
+return password;
 }
-*/
+
 
 
 module.exports = BizBird;
